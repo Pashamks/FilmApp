@@ -6,48 +6,82 @@
         xmlns:local="clr-namespace:FilmApp.Model"
         xmlns:materialDesing ="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="FilmApp" Icon="C:\Users\pavlo\Desktop\2.1\CoursWork\FilmApp\FilmApp\img\film.png" Height="450" MinHeight="400" Width="800" MinWidth="500">
+        Title="FilmApp" Icon="C:\Users\pavlo\Desktop\2.1\CoursWork\FilmApp\FilmApp\img\film.png"  MinHeight="500" Width="800" MinWidth="500">
     <Window.DataContext>
         <local:FilmList/>
     </Window.DataContext>
+    <Window.Resources>
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="70"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="MenuClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="BOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="BCloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
+        </EventTrigger>
+    </Window.Triggers>
     <Grid Background="White">
-        <Grid MinHeight="50" VerticalAlignment="Top" Background="#FF2C2E56" >
+        <Grid MinHeight="50" MinWidth="200" VerticalAlignment="Top" Background="#FF242148" >
             <TextBlock Text="Film App" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="25"/>
             <!--<materialDesing:PopupBox  HorizontalAlignment="Right" Margin="10" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Background="#FFE7E2E2"/>-->
         </Grid>
-        <Grid Width="200" HorizontalAlignment="Left" Background="#FF242148">
+        <Grid x:Name="GridMenu" Width="50" HorizontalAlignment="Left" Background="#FF242148">
             <StackPanel>
-                <Grid Height="90" Background="White">
-                    <Button x:Name="BCloseMenu" Width="60" Height="60"  Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top"  HorizontalAlignment="Right" Visibility="Collapsed" >
+                <Grid MinHeight="50" Background="White">
+                    <Button x:Name="BCloseMenu" Width="50" MinHeight="50"  Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top"  HorizontalAlignment="Right" Visibility="Collapsed" Click="BCloseMenu_Click" >
                         <materialDesing:PackIcon Foreground ="#FF242148" Kind="ArrowLeft" Width="25" />
                     </Button>
-                    <Button x:Name="BOpenMenu" Width="60" Height="60"  Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top"  HorizontalAlignment="Right" >
+                    <Button x:Name="BOpenMenu" Width="50" MinHeight="50"  Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top"  HorizontalAlignment="Right"  Click="BOpenMenu_Click">
                         <materialDesing:PackIcon Foreground ="#FF242148" Kind="Menu" Width="25" />
                     </Button>
                 </Grid>
-                <ListView Foreground="#FF2C2E56">
-                    <ListViewItem Height="60">
+                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="#FF2C2E56">
+                    <ListViewItem MinHeight="60">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesing:PackIcon Kind="ViewDashboard" Width="20" Height="20" VerticalAlignment="Center"/>
-                            <TextBlock Text="Home" VerticalAlignment="Center" Margin="20 10"/>
+                            <materialDesing:PackIcon Kind="AccountDetails" Foreground="White" Width="20" Height="20" Margin="10" VerticalAlignment="Center"/>
+                            <TextBlock Text="Show films" Foreground="White" MaxWidth="100" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem MinHeight="60">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesing:PackIcon Kind="ViewDashboard" Width="20" Height="20" VerticalAlignment="Center"/>
-                            <TextBlock Text="Home" VerticalAlignment="Center" Margin="20 10"/>
+                            <materialDesing:PackIcon Kind="Sort" Width="20" Foreground="White" Height="20" Margin="10"  VerticalAlignment="Center"/>
+                            <TextBlock Text="Sort films by country" Foreground="White" MaxWidth="100" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem MinHeight="60">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesing:PackIcon Kind="ViewDashboard" Width="20" Height="20" VerticalAlignment="Center"/>
-                            <TextBlock Text="Home" VerticalAlignment="Center" Margin="20 10"/>
+                            <materialDesing:PackIcon Kind="FindInPage" MinWidth="20" Foreground="White" Height="20" Margin="10"  VerticalAlignment="Center"/>
+                            <TextBlock Text="Find the oldest and the most expensive film"  MaxWidth="100" VerticalAlignment="Center" Foreground="White" Margin="20 10" TextWrapping="Wrap"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem MinHeight="60">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesing:PackIcon Kind="ViewDashboard" Width="20" Height="20" VerticalAlignment="Center"/>
-                            <TextBlock Text="Home" VerticalAlignment="Center" Margin="20 10"/>
+                            <materialDesing:PackIcon Kind="UserBadge" Width="20" Foreground="White" Height="20" Margin="10"  VerticalAlignment="Center"/>
+                            <TextBlock Text="Find the most popular actor" MaxWidth="100" VerticalAlignment="Center" Foreground="White" Margin="20 10" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem MinHeight="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesing:PackIcon Kind="ReadMore" Width="20" Foreground="White" Height="20" Margin="10"  VerticalAlignment="Center"/>
+                            <TextBlock Text="Read films from file" MaxWidth="100" VerticalAlignment="Center" Foreground="White" Margin="20 10" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem MinHeight="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesing:PackIcon Kind="ContentSave" Width="20" Foreground="White" Height="20" Margin="10"  VerticalAlignment="Center"/>
+                            <TextBlock Text="Save films to file" MaxWidth="100" VerticalAlignment="Center" Foreground="White" Margin="20 10" TextWrapping="Wrap"/>
                         </StackPanel>
                     </ListViewItem>
                 </ListView>
