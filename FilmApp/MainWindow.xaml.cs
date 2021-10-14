@@ -35,68 +35,83 @@ namespace FilmApp
             //FilmTable.ItemsSource = list.List;
         }
 
-        //private void BFindTheLongesFilms_Click(object sender, RoutedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        FilmTable.ItemsSource = list.FindForDirectorsLongestFilm();
-        //        FilmTable.Items.Refresh();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //}
+        private void BFindTheLongesFilms_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                //FilmTable.ItemsSource = list.FindForDirectorsLongestFilm();
+                //FilmTable.Items.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
-        //private void BSort_Click(object sender, RoutedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        list.SortByCountry();
-        //        FilmTable.ItemsSource = list.List;
-        //        FilmTable.Items.Refresh();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
+        private void BSort_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                list.SortByCountry();
+                //FilmTable.ItemsSource = list.List;
+                //FilmTable.Items.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void BWriteFilmsToFile_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string films = System.Text.Json.JsonSerializer.Serialize(list);
+                File.WriteAllText($"{Directory.GetCurrentDirectory()}/films.json", films);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             
-        //}
+        }
 
-        //private void BWriteFilmsToFile_Click(object sender, RoutedEventArgs e)
-        //{
-        //    string films = System.Text.Json.JsonSerializer.Serialize(list);
-        //    File.WriteAllText($"{Directory.GetCurrentDirectory()}/films.json",films);
-        //}
+        private void BReadFilmsFromFile_Click(object sender, RoutedEventArgs e)
+        {
+            using (StreamReader read = new StreamReader($"{Directory.GetCurrentDirectory()}/films.json"))
+            {
+                string json = read.ReadToEnd();
+                list = JsonConvert.DeserializeObject<FilmList>(json);
+            }
+            //FilmTable.ItemsSource = list.List;
+            //FilmTable.Items.Refresh();
+        }
 
-        //private void BReadFilmsFromFile_Click(object sender, RoutedEventArgs e)
-        //{
-        //    using (StreamReader read = new StreamReader($"{Directory.GetCurrentDirectory()}/films.json"))
-        //    {
-        //        string json = read.ReadToEnd();
-        //        list = JsonConvert.DeserializeObject<FilmList>(json);
-        //    }
-        //    FilmTable.ItemsSource = list.List;
-        //    FilmTable.Items.Refresh();
-        //}
+        private void BFindPopularActor_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MessageBox.Show(list.FindPopularActor());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
-        //private void BFindPopularActor_Click(object sender, RoutedEventArgs e)
-        //{
-        //    MessageBox.Show(list.FindPopularActor());
-        //}
-
-        //private void BShowAllList_Click(object sender, RoutedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        FilmTable.ItemsSource = list.List;
-        //        FilmTable.Items.Refresh();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //}
+        private void BShowAllList_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                //FilmTable.ItemsSource = list.List;
+                //FilmTable.Items.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         //private void BFindFilmsWithActor_Click(object sender, RoutedEventArgs e)
         //{
@@ -109,7 +124,7 @@ namespace FilmApp
         //    {
         //        MessageBox.Show(ex.Message);
         //    }
-            
+
         //}
 
         //private void ActorName_GotFocus(object sender, RoutedEventArgs e)
@@ -151,8 +166,8 @@ namespace FilmApp
         //{
         //    try
         //    {
-        //        FilmTable.ItemsSource = list.FindTheMostExpensiveAndOldest();
-        //        FilmTable.Items.Refresh();
+        //        //FilmTable.ItemsSource = list.FindTheMostExpensiveAndOldest();
+        //        //FilmTable.Items.Refresh();
         //    }
         //    catch (Exception ex)
         //    {

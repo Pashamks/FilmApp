@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FilmApp.Model"
         xmlns:materialDesing ="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="FilmApp" Icon="C:\Users\pavlo\Desktop\2.1\CoursWork\FilmApp\FilmApp\img\film.png"  MinHeight="500" Width="800" MinWidth="500">
+        Title="FilmApp" Icon="C:\Users\pavlo\Desktop\2.1\CoursWork\FilmApp\FilmApp\img\film.png"  MinHeight="600" Width="800" MinWidth="500">
     <Window.DataContext>
         <local:FilmList/>
     </Window.DataContext>
@@ -51,37 +51,49 @@
                     <ListViewItem MinHeight="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesing:PackIcon Kind="AccountDetails" Foreground="White" Width="20" Height="20" Margin="10" VerticalAlignment="Center"/>
-                            <TextBlock Text="Show films" Foreground="White" MaxWidth="100" VerticalAlignment="Center" Margin="20 10"/>
+                            <Button x:Name="BShowAllList"   MinHeight="50" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" Click="BShowAllList_Click"  >
+                                <TextBlock Text="Show films" Foreground="White" MaxWidth="100" VerticalAlignment="Center" Margin="10 10"/>
+                            </Button>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem MinHeight="60">
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" MinHeight="60">
                             <materialDesing:PackIcon Kind="Sort" Width="20" Foreground="White" Height="20" Margin="10"  VerticalAlignment="Center"/>
-                            <TextBlock Text="Sort films by country" Foreground="White" MaxWidth="100" VerticalAlignment="Center" Margin="20 10"/>
+                            <Button x:Name="BSort"  MinHeight="50" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"  Click="BSort_Click" >
+                            <TextBlock Text="Sort films by country" Foreground="White" MinHeight="50" MaxWidth="100" TextAlignment="Center"  Margin="10 0 0 0" TextWrapping="Wrap"/>
+                            </Button>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem MinHeight="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesing:PackIcon Kind="FindInPage" MinWidth="20" Foreground="White" Height="20" Margin="10"  VerticalAlignment="Center"/>
-                            <TextBlock Text="Find the oldest and the most expensive film"  MaxWidth="100" VerticalAlignment="Center" Foreground="White" Margin="20 10" TextWrapping="Wrap"/>
+                            <Button x:Name="BFindTheLongesFilms"  MinHeight="80" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"   Click="BFindTheLongesFilms_Click" >
+                                <TextBlock Text="Find the oldest and the most expensive film" MinHeight="50" MaxWidth="100" TextAlignment="Center" Foreground="White" Margin="10 0 0 0" TextWrapping="Wrap"/>
+                            </Button>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem MinHeight="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesing:PackIcon Kind="UserBadge" Width="20" Foreground="White" Height="20" Margin="10"  VerticalAlignment="Center"/>
-                            <TextBlock Text="Find the most popular actor" MaxWidth="100" VerticalAlignment="Center" Foreground="White" Margin="20 10" TextWrapping="Wrap"/>
+                            <Button x:Name="BFindPopularActor"  MinHeight="70" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"   Click="BFindPopularActor_Click" >
+                                <TextBlock Text="Find the most popular actor"   MaxWidth="100" VerticalAlignment="Center" TextAlignment="Center" Foreground="White" Margin="10 0 0 0" TextWrapping="Wrap"/>
+                            </Button>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem MinHeight="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesing:PackIcon Kind="ReadMore" Width="20" Foreground="White" Height="20" Margin="10"  VerticalAlignment="Center"/>
-                            <TextBlock Text="Read films from file" MaxWidth="100" VerticalAlignment="Center" Foreground="White" Margin="20 10" TextWrapping="Wrap"/>
+                            <Button x:Name="BReadFilmsFromFile"  MinHeight="70" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"   Click="BReadFilmsFromFile_Click" >
+                                <TextBlock Text="Read films from file" MaxWidth="100"  TextAlignment="Center" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" TextWrapping="Wrap"/>
+                            </Button>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem MinHeight="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesing:PackIcon Kind="ContentSave" Width="20" Foreground="White" Height="20" Margin="10"  VerticalAlignment="Center"/>
-                            <TextBlock Text="Save films to file" MaxWidth="100" VerticalAlignment="Center" Foreground="White" Margin="20 10" TextWrapping="Wrap"/>
+                            <Button x:Name="BWriteFilmsToFile"  MinHeight="70" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"  Click="BWriteFilmsToFile_Click" >
+                                <TextBlock Text="Save films to file" MaxWidth="100" TextAlignment="Center" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" TextWrapping="Wrap"/>
+                            </Button>
                         </StackPanel>
                     </ListViewItem>
                 </ListView>
@@ -121,7 +133,7 @@
                
             </DataGrid>
         </ScrollViewer>
-        <Button x:Name="BSort" Grid.Row="1" Content="Sort films by countries" Click="BSort_Click" ></Button>
+      
         <Button x:Name="BFindDirectorsLowestBudget"  Grid.Row="1" Grid.Column="1" Click="BFindDirectorsLowestBudget_Click"  >
             <TextBlock Text="Find films with identical directors and the lowest budget" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
         </Button>
@@ -131,18 +143,7 @@
         <Button x:Name="BFindOldestExpesive"  Grid.Row="1" Grid.Column="3" Click="BFindOldestExpesive_Click" >
             <TextBlock Text="Find the most expensive and the oldest film" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
         </Button>
-        <Button x:Name="BReadFilmsFromFile"  Grid.Row="3" Grid.Column="0" Click="BReadFilmsFromFile_Click" >
-            <TextBlock Text="Read films from file" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
-        </Button>
-        <Button x:Name="BWriteFilmsToFile"  Grid.Row="3" Grid.Column="1" Click="BWriteFilmsToFile_Click" >
-            <TextBlock Text="Write films to file" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
-        </Button>
-        <Button x:Name="BFindPopularActor"  Grid.Row="3" Grid.Column="2" Click="BFindPopularActor_Click" >
-            <TextBlock Text="Find the most popular actor" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
-        </Button>
-        <Button x:Name="BShowAllList"  Grid.Row="3" Grid.Column="3" Click="BShowAllList_Click"  >
-            <TextBlock Text="Show all films in table" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
-        </Button>
+      
         <Button x:Name="BFindFilmsWithActor"  Grid.Row="4" Grid.Column="0" Click="BFindFilmsWithActor_Click"  >
             <TextBlock Text="Find films with actor :" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
         </Button>
