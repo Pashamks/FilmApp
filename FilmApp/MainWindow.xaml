@@ -33,11 +33,19 @@
         </EventTrigger>
     </Window.Triggers>
     <Grid Background="White">
-        <Grid MinHeight="50" MinWidth="200" VerticalAlignment="Top" Background="#FF242148" >
+        <Grid.RowDefinitions>
+            <RowDefinition  MaxHeight="50"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MaxWidth="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid MinHeight="50" MinWidth="200" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Top" Background="#FF242148" >
             <TextBlock Text="Film App" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="25"/>
             <!--<materialDesing:PopupBox  HorizontalAlignment="Right" Margin="10" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Background="#FFE7E2E2"/>-->
         </Grid>
-        <Grid x:Name="GridMenu" Width="50" HorizontalAlignment="Left" Background="#FF242148">
+        <Grid x:Name="GridMenu" Width="50" HorizontalAlignment="Left" Grid.RowSpan="2" Background="#FF242148">
             <StackPanel>
                 <Grid MinHeight="50" Background="White">
                     <Button x:Name="BCloseMenu" Width="50" MinHeight="50"  Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top"  HorizontalAlignment="Right" Visibility="Collapsed" Click="BCloseMenu_Click" >
@@ -97,6 +105,9 @@
                         </StackPanel>
                     </ListViewItem>
                 </ListView>
+            </StackPanel>
+            <StackPanel>
+                
             </StackPanel>
         </Grid>
         <!--<Grid.RowDefinitions>
