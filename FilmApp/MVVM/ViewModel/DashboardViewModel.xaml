@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="FilmApp.MVVM.ViewModel.DashboardViewModel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FilmApp.MVVM.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="600">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+            <Border MinWidth="500" MinHeight="280">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#FFD4F09C" Offset="0.0"/>
+                        <GradientStop Color="#FF930179" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <Grid >
+                    <StackPanel>
+                        <ScrollViewer Grid.Row="2" Grid.ColumnSpan="4" HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto" >
+                            <DataGrid  Background="{x:Null}" x:Name="FilmTable" Grid.ColumnSpan="4" ItemsSource="{Binding }" HorizontalAlignment="Center" AutoGenerateColumns="True" HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Text"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Text"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Text"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </ScrollViewer>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+            <Border MinWidth="240" MinHeight="150" Margin="10">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#FFD4F09C" Offset="0.0"/>
+                        <GradientStop Color="#FF930179" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border MinWidth="240" MinHeight="150" Margin="10">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#FFD4F09C" Offset="0.0"/>
+                        <GradientStop Color="#FF930179" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

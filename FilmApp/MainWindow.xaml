@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FilmApp.Model"
         xmlns:materialDesing ="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:viewModel ="clr-namespace:FilmApp.MVVM.ViewModel"
         mc:Ignorable="d"
         Title="FilmApp" Icon="C:\Users\pavlo\Desktop\2.1\CoursWork\FilmApp\FilmApp\img\film.png"  MinHeight="600" Width="800" MinWidth="500">
     <Window.DataContext>
-        <local:FilmList/>
+        <!--<local:FilmList/>-->
+        <viewModel:MainViewModel/>
     </Window.DataContext>
     <Window.Resources>
         <Storyboard x:Key="MenuOpen">
@@ -106,7 +108,7 @@
             </StackPanel>
         </Grid>
         <Grid x:Name='MainGrid' Grid.Row="1" Margin="70 0 0 0">
-            <ContentControl />
+            <ContentControl Content="{Binding CurrentView}" />
         </Grid>
         <!--<Grid.RowDefinitions>
             <RowDefinition Height="0.15*"/>
