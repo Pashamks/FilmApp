@@ -16,11 +16,13 @@
                 <EasingDoubleKeyFrame KeyTime="0" Value="70"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
             </DoubleAnimationUsingKeyFrames>
+         
         </Storyboard>
         <Storyboard x:Key="MenuClose">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
                 <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
+
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
@@ -32,18 +34,14 @@
             <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
         </EventTrigger>
     </Window.Triggers>
-    <Grid Background="White">
+    <Grid  Background="White">
         <Grid.RowDefinitions>
             <RowDefinition  MaxHeight="50"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition MaxWidth="200"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid MinHeight="50" MinWidth="200" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Top" Background="#FF242148" >
+
+        <Grid MinHeight="50" MinWidth="200" Grid.Row="0"  VerticalAlignment="Top" Background="#FF242148" >
             <TextBlock Text="Film App" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="25"/>
-            <!--<materialDesing:PopupBox  HorizontalAlignment="Right" Margin="10" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Background="#FFE7E2E2"/>-->
         </Grid>
         <Grid x:Name="GridMenu" Width="50" HorizontalAlignment="Left" Grid.RowSpan="2" Background="#FF242148">
             <StackPanel>
@@ -68,7 +66,7 @@
                         <StackPanel Orientation="Horizontal" MinHeight="60">
                             <materialDesing:PackIcon Kind="Sort" Width="20" Foreground="White" Height="20" Margin="10"  VerticalAlignment="Center"/>
                             <Button x:Name="BSort"  MinHeight="50" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"  Click="BSort_Click" >
-                            <TextBlock Text="Sort films by country" Foreground="White" MinHeight="50" MaxWidth="100" TextAlignment="Center"  Margin="10 0 0 0" TextWrapping="Wrap"/>
+                                <TextBlock Text="Sort films by country" Foreground="White" MinHeight="50" MaxWidth="100" TextAlignment="Center"  Margin="10 0 0 0" TextWrapping="Wrap"/>
                             </Button>
                         </StackPanel>
                     </ListViewItem>
@@ -106,9 +104,9 @@
                     </ListViewItem>
                 </ListView>
             </StackPanel>
-            <StackPanel>
-                
-            </StackPanel>
+        </Grid>
+        <Grid x:Name='MainGrid' Grid.Row="1" Margin="70 0 0 0">
+            <ContentControl />
         </Grid>
         <!--<Grid.RowDefinitions>
             <RowDefinition Height="0.15*"/>
