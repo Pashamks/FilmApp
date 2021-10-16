@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmApp.MVVM.View"
+             xmlns:table="clr-namespace:FilmApp.Model"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
+    <UserControl.Resources>
+        <table:FilmList x:Key="FilmTable"/>
+    </UserControl.Resources>
     <StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
             <Border MinWidth="500" MinHeight="280">
@@ -30,7 +34,7 @@
                     </StackPanel>
                 </Grid>
             </Border>
-            
+
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
             <Border MinWidth="240" MinHeight="150" Margin="10">
@@ -40,6 +44,18 @@
                         <GradientStop Color="#FF930179" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
+                <StackPanel>
+                    <Button x:Name="BFindByCountry" Background="#FF242148" Margin="5" Click="BFindByCountry_Click">
+                        <TextBox Text="Find films from country belong" MinHeight="30"/>
+                    </Button>
+                    <Button x:Name="FindFilmsWithActor" Background="#FF242148" Margin="5" Click="FindFilmsWithActor_Click">
+                        <TextBox Text="Find films with actor belong" MinHeight="30"/>
+                    </Button>
+                    <Border BorderBrush="#FFDA2020" Background="#FFCEE7F9"  Margin="5" MinHeight="25">
+                        <TextBlock x:Name="parametr_to_find" FontWeight="Bold" Padding="3" />
+                    </Border>
+
+                </StackPanel>
             </Border>
             <Border MinWidth="240" MinHeight="150" Margin="10">
                 <Border.Background>

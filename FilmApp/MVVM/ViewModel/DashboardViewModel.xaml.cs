@@ -23,6 +23,7 @@ namespace FilmApp.MVVM.ViewModel
         public DashboardViewModel()
         {
             InitializeComponent();
+            FilmTable.ItemsSource =new List<FilmData> { };
         }
     }
 }

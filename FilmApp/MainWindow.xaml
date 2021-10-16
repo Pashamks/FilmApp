@@ -36,7 +36,7 @@
             <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
         </EventTrigger>
     </Window.Triggers>
-    <Grid  Background="White">
+    <Grid  Background="#FFFBEB">
         <Grid.RowDefinitions>
             <RowDefinition  MaxHeight="50"/>
             <RowDefinition />
@@ -47,7 +47,7 @@
         </Grid>
         <Grid x:Name="GridMenu" Width="50" HorizontalAlignment="Left" Grid.RowSpan="2" Background="#FF242148">
             <StackPanel>
-                <Grid MinHeight="50" Background="White">
+                <Grid MinHeight="50" Background="#FFFBEB">
                     <Button x:Name="BCloseMenu" Width="50" MinHeight="50"  Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top"  HorizontalAlignment="Right" Visibility="Collapsed" Click="BCloseMenu_Click" >
                         <materialDesing:PackIcon Foreground ="#FF242148" Kind="ArrowLeft" Width="25" />
                     </Button>

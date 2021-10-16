@@ -6,9 +6,10 @@
              xmlns:local="clr-namespace:FilmApp.MVVM.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
+    
     <StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-            <Border MinWidth="500" MinHeight="280">
+            <Border MinWidth="500" MinHeight="280" Margin="10">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                         <GradientStop Color="#FFD4F09C" Offset="0.0"/>
@@ -20,11 +21,6 @@
                     <StackPanel>
                         <ScrollViewer Grid.Row="2" Grid.ColumnSpan="4" HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto" >
                             <DataGrid  Background="{x:Null}" x:Name="FilmTable" Grid.ColumnSpan="4" ItemsSource="{Binding }" HorizontalAlignment="Center" AutoGenerateColumns="True" HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Text"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Text"></DataGridTextColumn>
-                                    <DataGridTextColumn Header="Text"></DataGridTextColumn>
-                                </DataGrid.Columns>
                             </DataGrid>
                         </ScrollViewer>
                     </StackPanel>
@@ -40,6 +36,16 @@
                         <GradientStop Color="#FF930179" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
+                <StackPanel>
+                    <Button Margin="5" >
+
+                    </Button>
+                    <Button Margin="5">
+                        
+                    </Button>
+                </StackPanel>
+                
+                
             </Border>
             <Border MinWidth="240" MinHeight="150" Margin="10">
                 <Border.Background>

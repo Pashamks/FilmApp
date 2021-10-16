@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FilmApp.Model;
 
 namespace FilmApp.MVVM.View
 {
@@ -23,6 +24,31 @@ namespace FilmApp.MVVM.View
         public Dashboads()
         {
             InitializeComponent();
+
+        }
+
+        private void BFindByCountry_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void FindFilmsWithActor_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
