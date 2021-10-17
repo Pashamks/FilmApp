@@ -7,9 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
     
-    <StackPanel>
+    <StackPanel Margin="0,0,0,-40" >
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-            <Border MinWidth="500" MinHeight="280" Margin="10">
+            <Border MinWidth="500" MinHeight="280" Margin="10" CornerRadius="30">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                         <GradientStop Color="#FFD4F09C" Offset="0.0"/>
@@ -29,7 +29,7 @@
 
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-            <Border MinWidth="240" MinHeight="150" Margin="10">
+            <Border MinWidth="240" MinHeight="150" Margin="10" CornerRadius="10">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                         <GradientStop Color="#FFD4F09C" Offset="0.0"/>
@@ -37,24 +37,38 @@
                     </LinearGradientBrush>
                 </Border.Background>
                 <StackPanel>
-                    <Button Margin="5" >
+                    <Button x:Name="BFindByCountry" Background="#FF242148" Margin="5" Click="BFindByCountry_Click">
+                        <TextBox Text="Find films from country belong" MinHeight="30"/>
+                    </Button>
+                    <Button x:Name="FindFilmsWithActor" Background="#FF242148" Margin="5" Click="FindFilmsWithActor_Click">
+                        <TextBox Text="Find films with actor belong" MinHeight="30"/>
+                    </Button>
+                    <Border BorderBrush="#FFDA2020" Background="#FFCEE7F9"  Margin="5" MinHeight="25">
+                        <TextBox x:Name="parametr_to_find" FontWeight="Bold" Padding="3" />
+                    </Border>
 
-                    </Button>
-                    <Button Margin="5">
-                        
-                    </Button>
                 </StackPanel>
-                
-                
+
+
             </Border>
-            <Border MinWidth="240" MinHeight="150" Margin="10">
+            <Border MinWidth="240" MinHeight="150" Margin="10" CornerRadius="10">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                         <GradientStop Color="#FFD4F09C" Offset="0.0"/>
                         <GradientStop Color="#FF930179" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
+                <StackPanel  VerticalAlignment="Center">
+                    <Button x:Name="BFindWithIdentDirAndLowesPRice" Background="#FF242148" Margin="5" MinHeight="60" >
+                        <TextBox Text="Find films with identical director and the lowest price" MaxWidth="200" MinHeight="30" TextWrapping="WrapWithOverflow"  TextAlignment="Center"/>
+                    </Button>
+                    <Button x:Name="FindFilmsWithActo" Background="#FF242148" MinHeight="60" Margin="5" >
+                        <TextBox Text="Find the longest films for each director " MinHeight="30" MaxWidth="200" TextAlignment="Center" TextWrapping="WrapWithOverflow"/>
+                    </Button>
+
+                </StackPanel>
             </Border>
+           
         </StackPanel>
     </StackPanel>
 </UserControl>

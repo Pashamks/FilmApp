@@ -25,5 +25,29 @@ namespace FilmApp.MVVM.ViewModel
             InitializeComponent();
             FilmTable.ItemsSource =new List<FilmData> { };
         }
+
+        private void BFindByCountry_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void FindFilmsWithActor_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
