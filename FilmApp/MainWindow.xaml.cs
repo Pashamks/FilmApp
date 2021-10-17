@@ -192,12 +192,14 @@ namespace FilmApp
         {
             BOpenMenu.Visibility = Visibility.Collapsed;
             BCloseMenu.Visibility = Visibility.Visible;
+            MainGrid.Margin = new Thickness(200, 0, 0, 0);
         }
 
         private void BCloseMenu_Click(object sender, RoutedEventArgs e)
         {
             BOpenMenu.Visibility = Visibility.Visible;
             BCloseMenu.Visibility = Visibility.Collapsed;
+            MainGrid.Margin = new Thickness(70, 0, 0, 0);
         }
     }
 }

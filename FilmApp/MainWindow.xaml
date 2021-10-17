@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FilmApp.Model"
         xmlns:materialDesing ="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:viewModel ="clr-namespace:FilmApp.MVVM.ViewModel"
         mc:Ignorable="d"
         Title="FilmApp" Icon="C:\Users\pavlo\Desktop\2.1\CoursWork\FilmApp\FilmApp\img\film.png"  MinHeight="600" Width="800" MinWidth="500">
     <Window.DataContext>
-        <local:FilmList/>
+        <!--<local:FilmList/>-->
+        <viewModel:MainViewModel/>
     </Window.DataContext>
     <Window.Resources>
         <Storyboard x:Key="MenuOpen">
@@ -16,11 +18,13 @@
                 <EasingDoubleKeyFrame KeyTime="0" Value="70"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
             </DoubleAnimationUsingKeyFrames>
+         
         </Storyboard>
         <Storyboard x:Key="MenuClose">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
                 <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
+
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
@@ -32,14 +36,18 @@
             <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
         </EventTrigger>
     </Window.Triggers>
-    <Grid Background="White">
-        <Grid MinHeight="50" MinWidth="200" VerticalAlignment="Top" Background="#FF242148" >
+    <Grid  Background="#FFFBEB">
+        <Grid.RowDefinitions>
+            <RowDefinition  MaxHeight="50"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid MinHeight="50" MinWidth="200" Grid.Row="0"  VerticalAlignment="Top" Background="#FF242148" >
             <TextBlock Text="Film App" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="25"/>
-            <!--<materialDesing:PopupBox  HorizontalAlignment="Right" Margin="10" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Background="#FFE7E2E2"/>-->
         </Grid>
-        <Grid x:Name="GridMenu" Width="50" HorizontalAlignment="Left" Background="#FF242148">
+        <Grid x:Name="GridMenu" Width="50" HorizontalAlignment="Left" Grid.RowSpan="2" Background="#FF242148">
             <StackPanel>
-                <Grid MinHeight="50" Background="White">
+                <Grid MinHeight="50" Background="#FFFBEB">
                     <Button x:Name="BCloseMenu" Width="50" MinHeight="50"  Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top"  HorizontalAlignment="Right" Visibility="Collapsed" Click="BCloseMenu_Click" >
                         <materialDesing:PackIcon Foreground ="#FF242148" Kind="ArrowLeft" Width="25" />
                     </Button>
@@ -60,7 +68,7 @@
                         <StackPanel Orientation="Horizontal" MinHeight="60">
                             <materialDesing:PackIcon Kind="Sort" Width="20" Foreground="White" Height="20" Margin="10"  VerticalAlignment="Center"/>
                             <Button x:Name="BSort"  MinHeight="50" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"  Click="BSort_Click" >
-                            <TextBlock Text="Sort films by country" Foreground="White" MinHeight="50" MaxWidth="100" TextAlignment="Center"  Margin="10 0 0 0" TextWrapping="Wrap"/>
+                                <TextBlock Text="Sort films by country" Foreground="White" MinHeight="50" MaxWidth="100" TextAlignment="Center"  Margin="10 0 0 0" TextWrapping="Wrap"/>
                             </Button>
                         </StackPanel>
                     </ListViewItem>
@@ -98,6 +106,9 @@
                     </ListViewItem>
                 </ListView>
             </StackPanel>
+        </Grid>
+        <Grid x:Name='MainGrid' Grid.Row="1" Margin="70 0 0 0">
+            <ContentControl Content="{Binding CurrentView}" />
         </Grid>
         <!--<Grid.RowDefinitions>
             <RowDefinition Height="0.15*"/>
