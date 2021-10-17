@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -23,7 +24,7 @@ namespace FilmApp.MVVM.ViewModel
         public DashboardViewModel()
         {
             InitializeComponent();
-            FilmTable.ItemsSource =new List<FilmData> { };
+            FilmTable.ItemsSource = new List<FilmData> { };
         }
 
         private void BFindByCountry_Click(object sender, RoutedEventArgs e)
@@ -49,5 +50,16 @@ namespace FilmApp.MVVM.ViewModel
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void BFindWithIdentDirAndLowesPRice_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void FindLongesstForEachDirector_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }
