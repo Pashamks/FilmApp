@@ -18,6 +18,7 @@ using System.Text.Json.Serialization;
 using System.IO;
 using Newtonsoft.Json;
 using FilmApp.Model;
+using FilmApp.AppInteraction;
 
 namespace FilmApp
 {
@@ -27,11 +28,12 @@ namespace FilmApp
     public partial class MainWindow : Window
     {
         FilmList list =null;
+        FilmsData filmsData;
         public MainWindow()
         {
             InitializeComponent();
             list = new FilmList();
-           
+            filmsData = new FilmsData();
             //FilmTable.ItemsSource = list.List;
         }
 
@@ -84,6 +86,7 @@ namespace FilmApp
                 string json = read.ReadToEnd();
                 list = JsonConvert.DeserializeObject<FilmList>(json);
             }
+            filmsData.FillFilms(list);
             //FilmTable.ItemsSource = list.List;
             //FilmTable.Items.Refresh();
         }
@@ -104,6 +107,7 @@ namespace FilmApp
         {
             try
             {
+                
                 //FilmTable.ItemsSource = list.List;
                 //FilmTable.Items.Refresh();
             }

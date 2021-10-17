@@ -10,7 +10,6 @@ namespace FilmApp.Model
     
     public class FilmList
     {
-        public FilmList filmlist { get; set; }
 
         List<FilmData> list = null;
         public FilmList() 

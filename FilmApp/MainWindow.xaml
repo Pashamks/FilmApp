@@ -59,7 +59,7 @@
                     <ListViewItem MinHeight="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesing:PackIcon Kind="AccountDetails" Foreground="White" Width="20" Height="20" Margin="10" VerticalAlignment="Center"/>
-                            <Button x:Name="BShowAllList"   MinHeight="50" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" Click="BShowAllList_Click"  >
+                            <Button x:Name="BShowAllList"   MinHeight="50" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"  Click="BShowAllList_Click"  >
                                 <TextBlock Text="Show films" Foreground="White" MaxWidth="100" VerticalAlignment="Center" Margin="10 10"/>
                             </Button>
                         </StackPanel>
@@ -108,7 +108,7 @@
             </StackPanel>
         </Grid>
         <Grid x:Name='MainGrid' Grid.Row="1" Margin="70 0 0 0">
-            <ContentControl Content="{Binding CurrentView}" />
+            <ContentControl x:Name="Content" Content="{Binding CurrentView}" />
         </Grid>
         <!--<Grid.RowDefinitions>
             <RowDefinition Height="0.15*"/>
