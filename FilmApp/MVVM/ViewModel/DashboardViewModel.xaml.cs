@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FilmApp.AppInteraction;
+using FilmApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,10 +23,19 @@ namespace FilmApp.MVVM.ViewModel
     /// </summary>
     public partial class DashboardViewModel : UserControl
     {
+        private readonly FilmsData _filmdata;
         public DashboardViewModel()
         {
             InitializeComponent();
             FilmTable.ItemsSource = new List<FilmData> { };
+            _filmdata = new FilmsData();
+            FilmsData.FilmsFill += OnInteract;
+        }
+
+        private void OnInteract(FilmList obj)
+        {
+            FilmTable.ItemsSource = obj.List;
+            FilmTable.Items.Refresh();
         }
 
         private void BFindByCountry_Click(object sender, RoutedEventArgs e)
