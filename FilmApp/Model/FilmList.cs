@@ -134,7 +134,7 @@ namespace FilmApp.Model
             return films;
         }
 
-        public List<FilmData> FindTheMostExpensiveAndOldest()
+        public FilmList FindTheMostExpensiveAndOldest()
         {
             if (list.Count == 0)
             {
@@ -142,7 +142,7 @@ namespace FilmApp.Model
             }
             else if (list.Count == 1)
             {
-                return list;
+                return this;
             }
             List<FilmData> films = list.ToList() ;
  
@@ -168,8 +168,8 @@ namespace FilmApp.Model
          
             } while (max_price != oldest);
 
-
-            return films;
+            
+            return new FilmList(films);
         }
        
         public List<FilmData> FindSameDirectorsAndLowesBudget()
