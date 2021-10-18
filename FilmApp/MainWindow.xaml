@@ -24,9 +24,9 @@
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
                 <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
-
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+       
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="BOpenMenu">
@@ -37,6 +37,16 @@
         </EventTrigger>
     </Window.Triggers>
     <Grid  Background="#FFFBEB">
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Read films from file" Click="BReadFilmsFromFile_Click"  />
+                <MenuItem Header="Show films" Click="BShowAllList_Click"/>
+                <MenuItem Header="Sort films" Click="BSort_Click"/>
+                <MenuItem Header="Find the oldest and the most expensive film" Click="BFindOldestExpesive_Click"/>
+                <MenuItem Header="Find the most popular actor" Click="BFindPopularActor_Click"/>
+                <MenuItem Header="Write films to file" Click="BWriteFilmsToFile_Click"/>
+            </ContextMenu>
+        </Grid.ContextMenu>
         <Grid.RowDefinitions>
             <RowDefinition  MaxHeight="50"/>
             <RowDefinition />
