@@ -7,7 +7,7 @@
         xmlns:materialDesing ="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:viewModel ="clr-namespace:FilmApp.MVVM.ViewModel"
         mc:Ignorable="d"
-        Title="FilmApp" Icon="C:\Users\pavlo\Desktop\2.1\CoursWork\FilmApp\FilmApp\img\film.png"  MinHeight="600" Width="800" MinWidth="500">
+        Title="FilmApp" Icon="C:\Users\pavlo\Desktop\2.1\CoursWork\FilmApp\FilmApp\img\film.png"  MinHeight="600"  MinWidth="1000">
     <Window.DataContext>
         <!--<local:FilmList/>-->
         <viewModel:MainViewModel/>
@@ -24,9 +24,9 @@
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
                 <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
-
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+       
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="BOpenMenu">
@@ -37,6 +37,16 @@
         </EventTrigger>
     </Window.Triggers>
     <Grid  Background="#FFFBEB">
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Read films from file" Click="BReadFilmsFromFile_Click"  />
+                <MenuItem Header="Show films" Click="BShowAllList_Click"/>
+                <MenuItem Header="Sort films" Click="BSort_Click"/>
+                <MenuItem Header="Find the oldest and the most expensive film" Click="BFindOldestExpesive_Click"/>
+                <MenuItem Header="Find the most popular actor" Click="BFindPopularActor_Click"/>
+                <MenuItem Header="Write films to file" Click="BWriteFilmsToFile_Click"/>
+            </ContextMenu>
+        </Grid.ContextMenu>
         <Grid.RowDefinitions>
             <RowDefinition  MaxHeight="50"/>
             <RowDefinition />
@@ -107,61 +117,9 @@
                 </ListView>
             </StackPanel>
         </Grid>
-        <Grid x:Name='MainGrid' Grid.Row="1" Margin="70 0 0 0">
+        <Grid x:Name='MainGrid' Grid.Row="1" Margin="70 0 0 0" ScrollViewer.CanContentScroll="True"  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Auto">
             <ContentControl x:Name="Content" Content="{Binding CurrentView}" />
         </Grid>
-        <!--<Grid.RowDefinitions>
-            <RowDefinition Height="0.15*"/>
-            <RowDefinition Height="0.5*" />
-            <RowDefinition />
-            <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="0.5*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition/>
-            <ColumnDefinition />
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <DockPanel>
-            <Menu DockPanel.Dock="Top" Grid.ColumnSpan="3">
-                <MenuItem Header="Options">
-                    <MenuItem Header="_Open"/>
-                    <MenuItem Header="_Close"/>
-                    <MenuItem Header="_Save"/>
-                </MenuItem>
-                <MenuItem Header="Instruction">
-                    
-                </MenuItem>
-                <MenuItem Header="About">
-                    
-                </MenuItem>
-            </Menu>
-            <StackPanel></StackPanel>
-        </DockPanel>
-        <ScrollViewer Grid.Row="2" Grid.ColumnSpan="4" HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto" >
-            <DataGrid x:Name="FilmTable" Grid.ColumnSpan="4" ItemsSource="{Binding }" HorizontalAlignment="Center" AutoGenerateColumns="True" HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black">
-               
-            </DataGrid>
-        </ScrollViewer>
-      
-        <Button x:Name="BFindDirectorsLowestBudget"  Grid.Row="1" Grid.Column="1" Click="BFindDirectorsLowestBudget_Click"  >
-            <TextBlock Text="Find films with identical directors and the lowest budget" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
-        </Button>
-        <Button x:Name="BFindTheLongesFilms"  Grid.Row="1" Grid.Column="2" Click="BFindTheLongesFilms_Click" >
-            <TextBlock Text="Find the longest films for every directors" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
-        </Button>
-        <Button x:Name="BFindOldestExpesive"  Grid.Row="1" Grid.Column="3" Click="BFindOldestExpesive_Click" >
-            <TextBlock Text="Find the most expensive and the oldest film" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
-        </Button>
-      
-        <Button x:Name="BFindFilmsWithActor"  Grid.Row="4" Grid.Column="0" Click="BFindFilmsWithActor_Click"  >
-            <TextBlock Text="Find films with actor :" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
-        </Button>
-        <TextBox x:Name="ActorName" Text="Enter actor name"  Grid.Row="4" Grid.Column="1" GotFocus="ActorName_GotFocus" LostFocus="ActorName_LostFocus"/>
-        <Button x:Name="BFindFilmsByCountry"  Grid.Row="4" Grid.Column="2" Click="BFindFilmsByCountry_Click"  >
-            <TextBlock Text="Find movies with the biggest budgets and the shortest duration  :" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
-        </Button>
-        <TextBox x:Name="Country" Text="Enter country"  Grid.Row="4" Grid.Column="3" LostFocus="Country_LostFocus" GotFocus="Country_GotFocus" />-->
     </Grid>
 </Window>
