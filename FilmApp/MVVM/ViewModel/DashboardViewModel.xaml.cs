@@ -36,7 +36,10 @@ namespace FilmApp.MVVM.ViewModel
         private void OnInteract(FilmList obj, ToChange value)
         {
             if (value == ToChange.Yes)
+            {
+                amount_fo_films.Text = "Amount of films in app: " + FilmData.counter.ToString();
                 list = obj;
+            }  
             FilmTable.ItemsSource = obj.List;
             FilmTable.Items.Refresh();
         }
@@ -93,5 +96,12 @@ namespace FilmApp.MVVM.ViewModel
             }
         }
 
+        private void BAddNewFilm_Click(object sender, RoutedEventArgs e)
+        {
+            if(film_actors.Text.Any(c => char.IsLetter(c)))
+            {
+
+            }
+        }
     }
 }

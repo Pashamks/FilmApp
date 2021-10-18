@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmApp.MVVM.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="600">
+             d:DesignHeight="550" d:DesignWidth="800">
     
     <StackPanel Margin="0,0,0,-40" >
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-            <Border MinWidth="500" MinHeight="280" Margin="10" CornerRadius="30">
+            <Border MinWidth="700" MinHeight="280" Margin="10" CornerRadius="30">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                         <GradientStop Color="#FFD4F09C" Offset="0.0"/>
@@ -20,9 +20,13 @@
                 <Grid >
                     <StackPanel>
                         <ScrollViewer Grid.Row="2" Grid.ColumnSpan="4" HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto" >
-                            <DataGrid  Background="{x:Null}" x:Name="FilmTable" Grid.ColumnSpan="4" ItemsSource="{Binding }" HorizontalAlignment="Center" AutoGenerateColumns="True" HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black"/>
+                            <DataGrid IsReadOnly="True" Background="{x:Null}" x:Name="FilmTable" Grid.ColumnSpan="4" ItemsSource="{Binding }" HorizontalAlignment="Center" AutoGenerateColumns="True" HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black"/>
                         </ScrollViewer>
-                        <TextBlock x:Name="amount_fo_films" Margin="10 20 10 10" Text="Amount of films: " TextAlignment="Center"/>
+                        <StackPanel  Orientation="Horizontal" Margin="10 20 10 10" VerticalAlignment="Center" >
+                            <Button x:Name="BAddNewFilm" Background="#FF49CD2E"  Content="Add new Film" Click="BAddNewFilm_Click" />
+                            <TextBlock x:Name="amount_fo_films"  Margin="50 0 0 0" Text="Amount of films in app: "  TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        
                     </StackPanel>
                 </Grid>
             </Border>
@@ -37,20 +41,94 @@
                     </LinearGradientBrush>
                 </Border.Background>
                 <StackPanel>
-                    <Button x:Name="BFindByCountry" Background="#FF242148" Margin="5" Click="BFindByCountry_Click">
+                    <Button x:Name="BFindByCountry" Background="#FF242148"  MinHeight="40"  Margin="5 10 5 10" Click="BFindByCountry_Click">
                         <TextBlock Text="Find films from country belong" MinHeight="30"/>
                     </Button>
-                    <Button x:Name="FindFilmsWithActor" Background="#FF242148" Margin="5" Click="FindFilmsWithActor_Click">
-                        <TextBlock Text="Find films with actor belong" MinHeight="30"/>
+                    <Button x:Name="FindFilmsWithActor" MinHeight="40"  Background="#FF242148" Margin="5 10 5 10" Click="FindFilmsWithActor_Click">
+                        <TextBlock Text="Find films with actor belong" MinHeight="30" />
                     </Button>
-                    <Border Background="#FFFBEB"  Margin="5" MinHeight="25">
+                    <Border Background="#FFFBEB"  Margin="5 5 5 5" MinHeight="30">
                         <TextBox x:Name="parametr_to_find" FontWeight="Bold" Padding="3" />
                     </Border>
 
                 </StackPanel>
-
-
             </Border>
+            <Border MinWidth="270" MinHeight="180" Margin="10" CornerRadius="10">
+                    <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#FFD4F09C" Offset="0.0"/>
+                        <GradientStop Color="#FF930179" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <StackPanel>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition  />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="100"/>
+                            <ColumnDefinition MinWidth="150"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock Text="Film name:" Grid.Column="0" Grid.Row="0"  Margin="5 5 0 5" />
+                        <TextBlock Text="Film director:" Grid.Column="0" Grid.Row="1" Margin="5 0 0 5" />
+                        <TextBlock Text="Film year:" Grid.Column="0" Grid.Row="2" Margin="5 0 0 5" />
+                        <TextBlock Text="Film actors:" Grid.Column="0" Grid.Row="3" Margin="5 0 0 5" />
+                        <TextBlock Text="Film budget:" Grid.Column="0" Grid.Row="4" Margin="5 0 0 5" />
+                        <TextBlock Text="Film country:" Grid.Column="0" Grid.Row="5" Margin="5 0 0 5" />
+                        <TextBlock Text="Film time"  Grid.Column="0" Grid.Row="6" Margin="5 0 0 5" />
+                        <TextBox x:Name="film_name"  Grid.Column="2" Grid.Row="0" Background="#FFFBEB"  FontWeight="Bold" MinWidth="100" MaxWidth="150" Margin="0 5 0 0" />
+                        <TextBox x:Name="film_director"  Grid.Column="2" Grid.Row="1" Background="#FFFBEB"  FontWeight="Bold" MinWidth="100" MaxWidth="150"  />
+                        <TextBox x:Name="film_year" FontWeight="Bold" Grid.Column="2" Grid.Row="2" Background="#FFFBEB" MinWidth="100" MaxWidth="150" />
+                        <TextBox x:Name="film_actors"  Grid.Column="2" Grid.Row="3" Background="#FFFBEB"  FontWeight="Bold" MinWidth="100" MaxWidth="150" />
+                        <TextBox x:Name="film_budget"  Grid.Column="2" Grid.Row="4" Background="#FFFBEB"  FontWeight="Bold" MinWidth="100" MaxWidth="150" />
+                        <TextBox x:Name="film_country" FontWeight="Bold" Grid.Column="2" Grid.Row="5" Background="#FFFBEB" MinWidth="100" MaxWidth="150" />
+                        <TextBox x:Name="film_time"  Grid.Column="2" Grid.Row="6"  Background="#FFFBEB"  FontWeight="Bold" MinWidth="100" MaxWidth="150" />
+                    </Grid>
+                    
+                    <!--<StackPanel Orientation="Horizontal" Margin="0 0 0 5">
+                        <TextBlock Text="Film name:" Margin="5 5 0 5" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5 0 5">
+                        <TextBlock Text="Film director:" Margin="5 5 0 5" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5 0 5">
+                        <TextBlock Text="Film year:" Margin="5 5 0 5" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                        <TextBlock Text="Film actors:" Margin="5 5 0 5" />
+                        <Border Background="#FFFBEB"  Margin="18 0 0 0" MinHeight="25">
+                            <TextBox x:Name="film_actors" FontWeight="Bold" MinWidth="150" />
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5 0 5">
+                        <TextBlock Text="Film budget:" Margin="5 5 0 5" />
+                        <Border Background="#FFFBEB"  Margin="13 0 0 0" MinHeight="25">
+                            <TextBox x:Name="film_budget" FontWeight="Bold" MinWidth="150" />
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 5">
+                        <TextBlock Text="Film country:" Margin="5 5 0 5" />
+                        <Border Background="#FFFBEB"  Margin="11 0 0 0" MinHeight="25">
+                            <TextBox x:Name="film_country" FontWeight="Bold" MinWidth="150" />
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Film time" Margin="5 5 0 5" />
+                        <Border Background="#FFFBEB"  Margin="30 0 0 0" MinHeight="25">
+                            <TextBox x:Name="film_time" FontWeight="Bold" MinWidth="150" />
+                        </Border>
+                    </StackPanel>-->
+                   
+                    </StackPanel>
+            </Border>
+                
             <Border MinWidth="240" MinHeight="150" Margin="10" CornerRadius="10">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">

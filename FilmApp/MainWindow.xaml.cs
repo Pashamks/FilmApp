@@ -71,6 +71,7 @@ namespace FilmApp
         {
             try
             {
+                FilmData.counter = 0;
                 using (StreamReader read = new StreamReader($"{Directory.GetCurrentDirectory()}/films.json"))
                 {
                     string json = read.ReadToEnd();

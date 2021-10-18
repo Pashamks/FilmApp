@@ -9,7 +9,7 @@ namespace FilmApp
 {
     public class FilmData
     {
-        protected static int counter;
+        public static int counter;
         protected string _name;
         protected string _director;
         protected int _year;
