@@ -39,7 +39,7 @@ namespace FilmApp.MVVM.ViewModel
             {
                 amount_fo_films.Text = "Amount of films in app: " + FilmData.counter.ToString();
                 list = obj;
-            }  
+            }
             FilmTable.ItemsSource = obj.List;
             FilmTable.Items.Refresh();
         }
@@ -98,9 +98,32 @@ namespace FilmApp.MVVM.ViewModel
 
         private void BAddNewFilm_Click(object sender, RoutedEventArgs e)
         {
-            if(film_actors.Text.Any(c => char.IsLetter(c)))
+            if (film_name.Text.Any(c => !char.IsLetter(c)) ||
+               film_director.Text.Any(c => !char.IsLetter(c)) ||
+               film_country.Text.Any(c => !char.IsLetter(c)) ||
+               film_actors.Text.Any(c => !char.IsLetter(c)) ||
+               film_budget.Text.Any(c => !char.IsDigit(c)) ||
+               film_time.Text.Any(c => !char.IsDigit(c)) ||
+               film_year.Text.Any(c => !char.IsDigit(c)))
             {
-
+                MessageBox.Show("There is an error in your data, so we can't add this to films list. Fix your data and try again.");
+                return;
+            }
+            else
+            {
+                var film = new FilmData
+                {
+                    Name = film_name.Text,
+                    Director = film_director.Text,
+                    Actors = new ActorsList(film_actors.Text.Split(',').ToList<string>()),
+                    Country = film_country.Text,
+                    Price = Convert.ToDouble(film_budget.Text),
+                    Time = Convert.ToDouble(film_time.Text),
+                    Year = Convert.ToInt32(film_year.Text),
+                };
+                list.List.Add(film);
+                FilmTable.ItemsSource = list.List;
+                FilmTable.Items.Refresh();
             }
         }
     }

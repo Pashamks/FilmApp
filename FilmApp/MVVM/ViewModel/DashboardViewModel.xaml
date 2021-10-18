@@ -18,9 +18,13 @@
                 </Border.Background>
 
                 <Grid >
-                    <StackPanel>
-                        <ScrollViewer Grid.Row="2" Grid.ColumnSpan="4" HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto" >
-                            <DataGrid IsReadOnly="True" Background="{x:Null}" x:Name="FilmTable" Grid.ColumnSpan="4" ItemsSource="{Binding }" HorizontalAlignment="Center" AutoGenerateColumns="True" HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black"/>
+                    <StackPanel MaxWidth="800" MaxHeight="400">
+                        <ScrollViewer  HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto" >
+                            <DataGrid IsReadOnly="True" Background="{x:Null}"  ScrollViewer.CanContentScroll="True"  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Auto" x:Name="FilmTable"  
+                                          ItemsSource="{Binding }" HorizontalAlignment="Center" AutoGenerateColumns="True" 
+                                          HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black"
+                                          MaxHeight="300"/>
                         </ScrollViewer>
                         <StackPanel  Orientation="Horizontal" Margin="10 20 10 10" VerticalAlignment="Center" >
                             <Button x:Name="BAddNewFilm" Background="#FF49CD2E"  Content="Add new Film" Click="BAddNewFilm_Click" />

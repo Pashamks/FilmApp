@@ -34,10 +34,7 @@ namespace FilmApp
             InitializeComponent();
             list = new FilmList();
             filmsData = new FilmsData();
-            //FilmTable.ItemsSource = list.List;
         }
-
-       
 
         private void BSort_Click(object sender, RoutedEventArgs e)
         {
@@ -119,30 +116,6 @@ namespace FilmApp
                 MessageBox.Show(ex.Message);
             }
         }
-
-
-        //private void ActorName_GotFocus(object sender, RoutedEventArgs e)
-        //{
-        //    ActorName.Text = "";
-        //}
-
-        //private void ActorName_LostFocus(object sender, RoutedEventArgs e)
-        //{
-        //    if (ActorName.Text == "")
-        //        ActorName.Text = "Enter actor name";
-        //}
-
-        //private void Country_LostFocus(object sender, RoutedEventArgs e)
-        //{
-        //    if (Country.Text == "")
-        //        Country.Text = "Enter country";
-        //}
-
-        //private void Country_GotFocus(object sender, RoutedEventArgs e)
-        //{
-        //    Country.Text = "";
-        //}
-
 
         private void BOpenMenu_Click(object sender, RoutedEventArgs e)
         {
