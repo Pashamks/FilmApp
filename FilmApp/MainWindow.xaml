@@ -75,7 +75,7 @@
                     <ListViewItem MinHeight="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesing:PackIcon Kind="FindInPage" MinWidth="20" Foreground="White" Height="20" Margin="10"  VerticalAlignment="Center"/>
-                            <Button x:Name="BFindTheLongesFilms"  MinHeight="80" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"   Click="BFindTheLongesFilms_Click" >
+                            <Button x:Name="BFindOldestExpesive"  MinHeight="80" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" Click="BFindOldestExpesive_Click">
                                 <TextBlock Text="Find the oldest and the most expensive film" MinHeight="50" MaxWidth="100" TextAlignment="Center" Foreground="White" Margin="10 0 0 0" TextWrapping="Wrap"/>
                             </Button>
                         </StackPanel>

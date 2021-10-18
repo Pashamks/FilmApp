@@ -9,6 +9,7 @@ namespace FilmApp
 {
     public class FilmData
     {
+        protected static int counter;
         protected string _name;
         protected string _director;
         protected int _year;
@@ -27,7 +28,8 @@ namespace FilmApp
         public string Country { get { return _country; } set { _country = value; } }
         public double Time { get { return _time; } set { _time = value; } }
 
-        public FilmData() { }
+        static FilmData() { counter = 0; }
+        public FilmData() { counter++;  }
         public FilmData(string name,string director, int year, ActorsList  actors,
         double price, string country, double time)
         {
@@ -38,6 +40,7 @@ namespace FilmApp
             _price = price;
             _country = country;
             _time = time;
+            counter++;
         }
         public FilmData(FilmData val)
         {
@@ -48,6 +51,7 @@ namespace FilmApp
             _price = val._price;
             _country = val._country;
             _time = val._time;
+            counter++;
         }
     }
 }

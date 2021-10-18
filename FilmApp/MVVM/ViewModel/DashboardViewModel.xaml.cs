@@ -24,6 +24,7 @@ namespace FilmApp.MVVM.ViewModel
     public partial class DashboardViewModel : UserControl
     {
         private readonly FilmsData _filmdata;
+        private FilmList list;
         public DashboardViewModel()
         {
             InitializeComponent();
@@ -32,8 +33,10 @@ namespace FilmApp.MVVM.ViewModel
             FilmsData.FilmsFill += OnInteract;
         }
 
-        private void OnInteract(FilmList obj)
+        private void OnInteract(FilmList obj, ToChange value)
         {
+            if (value == ToChange.Yes)
+                list = obj;
             FilmTable.ItemsSource = obj.List;
             FilmTable.Items.Refresh();
         }
@@ -42,7 +45,8 @@ namespace FilmApp.MVVM.ViewModel
         {
             try
             {
-
+                FilmTable.ItemsSource = list.FindByCountry(parametr_to_find.Text);
+                FilmTable.Items.Refresh();
             }
             catch (Exception ex)
             {
@@ -54,7 +58,8 @@ namespace FilmApp.MVVM.ViewModel
         {
             try
             {
-
+                FilmTable.ItemsSource = list.FindAllFilmsWithActor(parametr_to_find.Text);
+                FilmTable.Items.Refresh();
             }
             catch (Exception ex)
             {
@@ -64,12 +69,28 @@ namespace FilmApp.MVVM.ViewModel
 
         private void BFindWithIdentDirAndLowesPRice_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                FilmTable.ItemsSource = list.FindSameDirectorsAndLowesBudget();
+                FilmTable.Items.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void FindLongesstForEachDirector_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                FilmTable.ItemsSource = list.FindForDirectorsLongestFilm();
+                FilmTable.Items.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
     }

@@ -38,10 +38,10 @@
                 </Border.Background>
                 <StackPanel>
                     <Button x:Name="BFindByCountry" Background="#FF242148" Margin="5" Click="BFindByCountry_Click">
-                        <TextBox Text="Find films from country belong" MinHeight="30"/>
+                        <TextBlock Text="Find films from country belong" MinHeight="30"/>
                     </Button>
                     <Button x:Name="FindFilmsWithActor" Background="#FF242148" Margin="5" Click="FindFilmsWithActor_Click">
-                        <TextBox Text="Find films with actor belong" MinHeight="30"/>
+                        <TextBlock Text="Find films with actor belong" MinHeight="30"/>
                     </Button>
                     <Border Background="#FFFBEB"  Margin="5" MinHeight="25">
                         <TextBox x:Name="parametr_to_find" FontWeight="Bold" Padding="3" />
@@ -60,10 +60,10 @@
                 </Border.Background>
                 <StackPanel  VerticalAlignment="Center" >
                     <Button x:Name="BFindWithIdentDirAndLowesPRice" Background="#FF242148" Margin="10" MinHeight="60" Click="BFindWithIdentDirAndLowesPRice_Click" >
-                       <TextBox Text="Find films with identical director and the lowest price" MaxWidth="200" MinHeight="30" TextWrapping="WrapWithOverflow"  TextAlignment="Center"/>
+                       <TextBlock Text="Find films with identical director and the lowest price" MaxWidth="200" MinHeight="30" TextWrapping="WrapWithOverflow"  TextAlignment="Center"/>
                     </Button>
                     <Button x:Name="FindLongesstForEachDirector" Background="#FF242148" MinHeight="60" Margin="10" Click="FindLongesstForEachDirector_Click" >
-                        <TextBox Text="Find the longest films for each director " MinHeight="30" MaxWidth="200" TextAlignment="Center" TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Text="Find the longest films for each director " MinHeight="30" MaxWidth="200" TextAlignment="Center" TextWrapping="WrapWithOverflow"/>
                     </Button>
 
                 </StackPanel>
