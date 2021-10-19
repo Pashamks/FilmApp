@@ -1,23 +1,8 @@
 ﻿using FilmApp.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.IO;
 using Newtonsoft.Json;
-using FilmApp.Model;
 using FilmApp.AppInteraction;
 
 namespace FilmApp
@@ -56,10 +41,11 @@ namespace FilmApp
             {
                 string films = System.Text.Json.JsonSerializer.Serialize(list);
                 File.WriteAllText($"{Directory.GetCurrentDirectory()}/films.json", films);
+                MessageBox.Show("Your data saved to file.", "Successe", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
             catch (Exception ex)
             {
-                MessageBox.Show( "Error",ex.Message, MessageBoxButton.OK);
+                MessageBox.Show(ex.Message, "Erorr", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             
         }
@@ -68,6 +54,15 @@ namespace FilmApp
         {
             try
             {
+                if(list!=null && list.List.Count > 0)
+                {
+                    MessageBoxResult result = MessageBox.Show("Do you want to read new data? Your old data will be clear.", "Question",
+                        MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.No)
+                    {
+                        return;
+                    }
+                }
                 FilmData.counter = 0;
                 using (StreamReader read = new StreamReader($"{Directory.GetCurrentDirectory()}/films.json"))
                 {
@@ -75,10 +70,11 @@ namespace FilmApp
                     list = JsonConvert.DeserializeObject<FilmList>(json);
                 }
                 filmsData.UpDateFilms(list, ToChange.Yes);
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erorr", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -86,11 +82,11 @@ namespace FilmApp
         {
             try
             {
-                MessageBox.Show(list.FindPopularActor());
+                MessageBox.Show(list.FindPopularActor(), "The most popular actor:",MessageBoxButton.OK ,MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erorr", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -102,7 +98,7 @@ namespace FilmApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erorr", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void BFindOldestExpesive_Click(object sender, RoutedEventArgs e)
@@ -113,7 +109,7 @@ namespace FilmApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erorr", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

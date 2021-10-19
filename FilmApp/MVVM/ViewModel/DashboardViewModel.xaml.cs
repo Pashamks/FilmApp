@@ -35,25 +35,35 @@ namespace FilmApp.MVVM.ViewModel
 
         private void OnInteract(FilmList obj, ToChange value)
         {
-            if (value == ToChange.Yes)
+            try
             {
-                amount_fo_films.Text = "Amount of films in app: " + FilmData.counter.ToString();
-                list = obj;
+                if (value == ToChange.Yes)
+                {
+                    amount_fo_films.Text = "Amount of films in app: " + FilmData.counter.ToString();
+                    list = obj;
+                }
+                FilmTable.ItemsSource = obj.List;
+                FilmTable.Items.Refresh();
             }
-            FilmTable.ItemsSource = obj.List;
-            FilmTable.Items.Refresh();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erorr", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
 
         private void BFindByCountry_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                if (parametr_to_find.Text == string.Empty || parametr_to_find.Text.Any(c => !char.IsLetter(c)))
+                    throw new Exception("Your parameter is not valid.");
                 FilmTable.ItemsSource = list.FindByCountry(parametr_to_find.Text);
                 FilmTable.Items.Refresh();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erorr", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -61,12 +71,14 @@ namespace FilmApp.MVVM.ViewModel
         {
             try
             {
+                if (parametr_to_find.Text == string.Empty || parametr_to_find.Text.Any(c => char.IsDigit(c)))
+                    throw new Exception("Your parameter is not valid.");
                 FilmTable.ItemsSource = list.FindAllFilmsWithActor(parametr_to_find.Text);
                 FilmTable.Items.Refresh();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erorr", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -79,7 +91,7 @@ namespace FilmApp.MVVM.ViewModel
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erorr", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -92,39 +104,46 @@ namespace FilmApp.MVVM.ViewModel
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erorr", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void BAddNewFilm_Click(object sender, RoutedEventArgs e)
         {
-            if (film_name.Text.Any(c => !char.IsLetter(c)) ||
-               film_director.Text.Any(c => !char.IsLetter(c)) ||
-               film_country.Text.Any(c => !char.IsLetter(c)) ||
-               film_actors.Text.Any(c => !char.IsLetter(c)) ||
-               film_budget.Text.Any(c => !char.IsDigit(c)) ||
-               film_time.Text.Any(c => !char.IsDigit(c)) ||
-               film_year.Text.Any(c => !char.IsDigit(c)))
+            try
             {
-                MessageBox.Show("There is an error in your data, so we can't add this to films list. Fix your data and try again.");
-                return;
-            }
-            else
-            {
-                var film = new FilmData
+              if (film_name.Text.Any(c => !char.IsLetter(c)) ||
+              film_director.Text.Any(c => !char.IsLetter(c)) ||
+              film_country.Text.Any(c => !char.IsLetter(c)) ||
+              film_actors.Text.Any(c => char.IsDigit(c)) ||
+              film_budget.Text.Any(c => !char.IsDigit(c)) ||
+              film_time.Text.Any(c => !char.IsDigit(c)) ||
+              film_year.Text.Any(c => !char.IsDigit(c)))
                 {
-                    Name = film_name.Text,
-                    Director = film_director.Text,
-                    Actors = new ActorsList(film_actors.Text.Split(',').ToList<string>()),
-                    Country = film_country.Text,
-                    Price = Convert.ToDouble(film_budget.Text),
-                    Time = Convert.ToDouble(film_time.Text),
-                    Year = Convert.ToInt32(film_year.Text),
-                };
-                list.List.Add(film);
-                FilmTable.ItemsSource = list.List;
-                FilmTable.Items.Refresh();
+                   throw new Exception("There is an error in your data, so we can't add this to films list. Fix your data and try again.");
+                }
+                else
+                {
+                    var film = new FilmData
+                    {
+                        Name = film_name.Text,
+                        Director = film_director.Text,
+                        Actors = new ActorsList(film_actors.Text.Split(',').ToList<string>()),
+                        Country = film_country.Text,
+                        Price = Convert.ToDouble(film_budget.Text),
+                        Time = Convert.ToDouble(film_time.Text),
+                        Year = Convert.ToInt32(film_year.Text),
+                    };
+                    list.List.Add(film);
+                    FilmTable.ItemsSource = list.List;
+                    FilmTable.Items.Refresh();
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erorr", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
     }
 }
