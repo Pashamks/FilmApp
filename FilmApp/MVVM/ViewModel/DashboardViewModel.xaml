@@ -18,7 +18,7 @@
                 </Border.Background>
 
                 <Grid >
-                    <StackPanel MaxWidth="800" MaxHeight="400">
+                    <StackPanel MaxWidth="1200" MaxHeight="400">
                         <ScrollViewer  HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto" >
                             <DataGrid IsReadOnly="True" Background="{x:Null}"  ScrollViewer.CanContentScroll="True"  ScrollViewer.VerticalScrollBarVisibility="Auto"
                                           ScrollViewer.HorizontalScrollBarVisibility="Auto" x:Name="FilmTable"  
