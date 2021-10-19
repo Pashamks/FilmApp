@@ -7,10 +7,8 @@ using System.Windows;
 
 namespace FilmApp.Model
 {
-    
     public class FilmList
     {
-
         List<FilmData> list = null;
         public FilmList() 
         {
@@ -24,7 +22,8 @@ namespace FilmApp.Model
         public List<FilmData> List {  get { return list; } set { list = value; } }
 
         public void  SortByCountry()
-        {//Алгоритмом простої вибірки відсортувати записи за Країною виробництва
+        {
+            //Алгоритмом простої вибірки відсортувати записи за Країною виробництва
             if (list == null || list.Count == 0)
                 throw new NullReferenceException("Your list is empty");
             FilmData fix, min;
@@ -42,6 +41,7 @@ namespace FilmApp.Model
                         min_index = i;
                     }
                 }
+                //міняємо місцями фіксований елемент і мінімальний
                 if (String.Compare(fix.Country, min.Country, true) > 0)
                 {
                     list[j] = min;
@@ -50,8 +50,10 @@ namespace FilmApp.Model
             }
         }
         public string  FindPopularActor()
-        {// Встановити найбільш популярного актора
+        {
+            // Встановити найбільш популярного актора
             Dictionary<string, int> actors = new Dictionary<string, int>();
+            //формуємо словник акторів і кількістю їхніх зйомок у фільмах
             for (int i = 0; i < list.Count; i++)
             {
                 for (int j = 0; j < list[j].Actors.Actors.Count; j++)
@@ -63,6 +65,7 @@ namespace FilmApp.Model
                 }
             }
             int max = 0;
+            //знаходимо максимальну кількість зйомок
             foreach (var item in actors)
             {
                 if(max < item.Value)
@@ -70,6 +73,7 @@ namespace FilmApp.Model
                     max = item.Value;
                 }
             }
+            //повертаємо актора з максмальною кількістю зйомок
             foreach (var item in actors)
             {
                 if (max == item.Value)
@@ -79,10 +83,12 @@ namespace FilmApp.Model
         }
 
         public List<FilmData> FindAllFilmsWithActor(string actor_name)
-        {// За заданим актором визначити всі фільми, в яких він (вона) знімались
+        {
+            // За заданим актором визначити всі фільми, в яких він (вона) знімались
             if (list == null || list.Count == 0)
                 throw new NullReferenceException("Your list is empty!");
             List<FilmData> films = new List<FilmData>();
+            //знаходимо фільми з потрібним актором
             foreach (var film in list)
             {
                 foreach (var actor in film.Actors.Actors)
@@ -96,7 +102,8 @@ namespace FilmApp.Model
             return films;
         }
         public List<FilmData> FindForDirectorsLongestFilm()
-        { //Для кожного Режисера визначити фільм з найбільшою тривалістю.
+        { 
+            //Для кожного Режисера визначити фільм з найбільшою тривалістю.
             if (list == null || list.Count == 0)
                 throw new NullReferenceException("Your list is empty");
             List<FilmData> films = new List<FilmData>();
@@ -133,9 +140,10 @@ namespace FilmApp.Model
             films = longest_films.Select(val => val.Value).ToList();
             return films;
         }
-       
+
         public FilmList FindTheMostExpensiveAndOldest()
         {
+            ///Знайти найдорожчий та найстарший фільм одночасно
             if (list.Count == 0)
             {
                 throw new NullReferenceException("Your list is empty");
@@ -145,41 +153,26 @@ namespace FilmApp.Model
                 return this;
             }
             List<FilmData> films = list.ToList() ;
- 
-            FilmData max_price = list[0], oldest = list[1];
-            do
-            {
-                max_price = films[0];
-                oldest = films[1]; // TODO: ERORR?
-                foreach (var item in films)
-                {
-                    if (max_price.Price < item.Price)
-                        max_price = item;
-                    if (oldest.Year > item.Year)
-                        oldest = item;
-                }
-                if(oldest!=max_price)
-                {
-                    films.Remove(oldest);
-                    films.Remove(max_price);
-                }
-                if (films.Count == 1)
-                    break;
-         
-            } while (max_price != oldest);
+            //шукаємо найдорожчі фільми
+            List<FilmData> max_price = list.Where(val => val.Price == list.Max(film => film.Price)).ToList<FilmData>();
+            //шукаємо найстарші фільми
+            films = max_price.Where(val => val.Time == max_price.Min(film => film.Time)).ToList<FilmData>();
 
-            
             return new FilmList(films);
         }
        
         public List<FilmData> FindSameDirectorsAndLowesBudget()
-        {
+        { 
+            ///Визначити Назви фільмів, в яких однакові 
+            ///режисери та найменші бюджети одночасно.
+            
             if (list == null || list.Count == 0)
                 throw new NullReferenceException("Your list is empty!");
-
+            //групуємо фільми по режисерах
             var group_films = from filmdata in list group filmdata by filmdata.Director;
             List<double> film_price = new List<double>(group_films.Count());
             int i = 0;
+            //рахуємо суми їхніх бюджетів
             foreach (IGrouping<string, FilmData> g in group_films)
             {
                 film_price.Add(new double());
@@ -187,54 +180,36 @@ namespace FilmApp.Model
                     film_price[i] += film.Price;
                 i++;
             }
+            //знаходимо індекс мінімального
             int index = film_price.IndexOf(film_price.Min());
             List<FilmData> films = group_films.ElementAt(index).Select(g => g).ToList();
             
             return films;
         }
         public List<FilmData> FindByCountry(string country)
-        {//TODO: find all films not one
+        {
+            ///За заданою країною виробництва знайти всі фільми, 
+            ///в яких найбільші бюджети і найменша тривалість одночасно.
+            
             if (list == null || list.Count == 0)
                 throw new NullReferenceException("Your list is empty!");
-
+            //вибираємо фільми із заданої країни
             List<FilmData> films = list.Where(val => val.Country == country).ToList<FilmData>();
           
             if (films.Count == 0)
                 throw new ArgumentException("There is no films from this country");
             if (films.Count == 1)
                 return films;
-            
-            FilmData min_time, max_price;
+            // вибираємо фільми з максимальною ціною
+            List<FilmData> max_price = films.Where(
+                film => film.Price == 
+                films.Max(val => val.Price)).ToList<FilmData>();
+            // вибираємо фільми з найменшою тривалістю
+            List<FilmData> min_time = max_price.Where(
+                val => val.Time == 
+                max_price.Min(film => film.Time)).ToList<FilmData>();
 
-            do
-            {
-                max_price = films[0];//TODO: error?
-                min_time = films[1];
-                foreach (var item in films)
-                {
-                    if (max_price.Price < item.Price)
-                        max_price = item;
-                    if (min_time.Time > item.Time)
-                        min_time = item;
-                }
-                if (min_time != max_price)
-                {
-                    if (films.Count != 2)
-                    {
-                        films.Remove(min_time);
-                        films.Remove(max_price);
-                    }
-                    else
-                    {
-                        films.Remove(min_time);
-                        break;
-                    }
-                }
-
-            } while (max_price != min_time);
-
-            return films;
-
+            return min_time;
         }
     }
 }

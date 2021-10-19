@@ -59,7 +59,7 @@ namespace FilmApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show( "Error",ex.Message, MessageBoxButton.OK);
             }
             
         }
