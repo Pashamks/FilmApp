@@ -4,6 +4,8 @@ using System.Windows;
 using System.IO;
 using Newtonsoft.Json;
 using FilmApp.AppInteraction;
+using System.Diagnostics;
+using Microsoft.Win32;
 
 namespace FilmApp
 {
@@ -26,7 +28,7 @@ namespace FilmApp
             try
             {
                 list.SortByCountry();
-                filmsData.UpDateFilms(list,ToChange.Yes);
+                filmsData.UpDateFilms(list,ToChange.Yes, "Your films sorted by country");
             }
             catch (Exception ex)
             {
@@ -54,7 +56,7 @@ namespace FilmApp
         {
             try
             {
-                if(list!=null && list.List.Count > 0)
+                if(list==null || list.List.Count == 0)
                 {
                     MessageBoxResult result = MessageBox.Show("Do you want to read new data? Your old data will be clear.", "Question",
                         MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -63,14 +65,26 @@ namespace FilmApp
                         return;
                     }
                 }
+                OpenFileDialog fileDialog = new OpenFileDialog();
+                fileDialog.Multiselect = false;
+                fileDialog.Filter = "Text files|*.json*.*";
+                fileDialog.DefaultExt = ".txt";
+                Nullable<bool> dialogOk = fileDialog.ShowDialog();
+                string filePath=string.Empty;
+                if (dialogOk == true)
+                {
+                     filePath = fileDialog.FileNames[0];
+                }
+
                 FilmData.counter = 0;
-                using (StreamReader read = new StreamReader($"{Directory.GetCurrentDirectory()}/films.json"))
+                //$"{Directory.GetCurrentDirectory()}/films.json")
+                using (StreamReader read = new StreamReader(filePath))
                 {
                     string json = read.ReadToEnd();
                     list = JsonConvert.DeserializeObject<FilmList>(json);
                 }
-                filmsData.UpDateFilms(list, ToChange.Yes);
-
+                filmsData.UpDateFilms(list, ToChange.Yes,"Your films:");
+                MessageBox.Show("You successfully readed films from file", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -94,7 +108,7 @@ namespace FilmApp
         {
             try
             {
-                filmsData.UpDateFilms(list, ToChange.No);
+                filmsData.UpDateFilms(list, ToChange.No, "Your films:");
             }
             catch (Exception ex)
             {
@@ -105,7 +119,7 @@ namespace FilmApp
         {
             try
             {
-                filmsData.UpDateFilms(list.FindTheMostExpensiveAndOldest(), ToChange.No);
+                filmsData.UpDateFilms(list.FindTheMostExpensiveAndOldest(), ToChange.No,"Your the most expensive and the oldest films:");
             }
             catch (Exception ex)
             {

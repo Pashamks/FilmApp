@@ -33,7 +33,7 @@ namespace FilmApp.MVVM.ViewModel
             FilmsData.FilmsFill += OnInteract;
         }
 
-        private void OnInteract(FilmList obj, ToChange value)
+        private void OnInteract(FilmList obj, ToChange value, string text)
         {
             try
             {
@@ -44,6 +44,7 @@ namespace FilmApp.MVVM.ViewModel
                 }
                 FilmTable.ItemsSource = obj.List;
                 FilmTable.Items.Refresh();
+                info_text.Text = text;
             }
             catch (Exception ex)
             {
@@ -60,6 +61,7 @@ namespace FilmApp.MVVM.ViewModel
                     throw new Exception("Your parameter is not valid.");
                 FilmTable.ItemsSource = list.FindByCountry(parametr_to_find.Text);
                 FilmTable.Items.Refresh();
+                info_text.Text = "Your films from " + parametr_to_find.Text + " with the bigest budget and lowest time:";
             }
             catch (Exception ex)
             {
@@ -75,6 +77,7 @@ namespace FilmApp.MVVM.ViewModel
                     throw new Exception("Your parameter is not valid.");
                 FilmTable.ItemsSource = list.FindAllFilmsWithActor(parametr_to_find.Text);
                 FilmTable.Items.Refresh();
+                info_text.Text = "Your films with " + parametr_to_find.Text ;
             }
             catch (Exception ex)
             {
@@ -88,6 +91,7 @@ namespace FilmApp.MVVM.ViewModel
             {
                 FilmTable.ItemsSource = list.FindSameDirectorsAndLowesBudget();
                 FilmTable.Items.Refresh();
+                info_text.Text = "Your films with identical directors and lowest price:";
             }
             catch (Exception ex)
             {
@@ -101,6 +105,7 @@ namespace FilmApp.MVVM.ViewModel
             {
                 FilmTable.ItemsSource = list.FindForDirectorsLongestFilm();
                 FilmTable.Items.Refresh();
+                info_text.Text = "Your the longet films for each director :";
             }
             catch (Exception ex)
             {
@@ -138,6 +143,8 @@ namespace FilmApp.MVVM.ViewModel
                     FilmTable.ItemsSource = list.List;
                     FilmTable.Items.Refresh();
                 }
+                info_text.Text = "Your films:";
+                MessageBox.Show("You successfully added film", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {

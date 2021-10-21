@@ -18,7 +18,9 @@
                 </Border.Background>
 
                 <Grid >
+
                     <StackPanel MaxWidth="1200" MaxHeight="400">
+                        <TextBlock x:Name="info_text" Text="Your films:" TextAlignment="Center" FontSize="20" FontWeight="Bold" />
                         <ScrollViewer  HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto" >
                             <DataGrid IsReadOnly="True" Background="{x:Null}"  ScrollViewer.CanContentScroll="True"  ScrollViewer.VerticalScrollBarVisibility="Auto"
                                           ScrollViewer.HorizontalScrollBarVisibility="Auto" x:Name="FilmTable"  
