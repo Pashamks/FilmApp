@@ -105,7 +105,7 @@ namespace FilmApp.MVVM.ViewModel
             {
                 FilmTable.ItemsSource = list.FindForDirectorsLongestFilm();
                 FilmTable.Items.Refresh();
-                info_text.Text = "Your the longet films for each director :";
+                info_text.Text = "Your the longest films for each director :";
             }
             catch (Exception ex)
             {

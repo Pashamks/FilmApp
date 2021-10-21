@@ -26,7 +26,13 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-       
+        <Style TargetType="Button" x:Key="RoundButton">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="13" />
+                </Style>
+            </Style.Resources>
+        </Style>
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="BOpenMenu">
@@ -54,6 +60,9 @@
 
         <Grid MinHeight="50" MinWidth="200" Grid.Row="0"  VerticalAlignment="Top" Background="#FF242148" >
             <TextBlock Text="Film App" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="25"/>
+            <Button  x:Name="BInfo" Width="30" Height="30" Background="#FFFBEB" BorderBrush="{x:Null}"  Style="{DynamicResource RoundButton}"  HorizontalAlignment="Right" Margin="0 0 20 0" Click="BInfo_Click">
+                <materialDesing:PackIcon Foreground ="black" Kind="QuestionMark" Width="25" />
+            </Button>
         </Grid>
         <Grid x:Name="GridMenu" Width="50" HorizontalAlignment="Left" Grid.RowSpan="2" Background="#FF242148">
             <StackPanel>

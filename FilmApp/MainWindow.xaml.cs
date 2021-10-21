@@ -140,5 +140,10 @@ namespace FilmApp
             BCloseMenu.Visibility = Visibility.Collapsed;
             MainGrid.Margin = new Thickness(70, 0, 0, 0);
         }
+
+        private void BInfo_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("This app created by Somko Pavlo.\nStudent of NULP, PZ-25.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }
