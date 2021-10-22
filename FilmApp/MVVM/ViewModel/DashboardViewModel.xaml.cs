@@ -48,7 +48,7 @@ namespace FilmApp.MVVM.ViewModel
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Erorr", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }
@@ -59,13 +59,15 @@ namespace FilmApp.MVVM.ViewModel
             {
                 if (parametr_to_find.Text == string.Empty || parametr_to_find.Text.Any(c => !char.IsLetter(c)))
                     throw new Exception("Your parameter is not valid.");
+                if (list.FindByCountry(parametr_to_find.Text).Count == 0)
+                    throw new Exception("There is not films from input country!");
                 FilmTable.ItemsSource = list.FindByCountry(parametr_to_find.Text);
                 FilmTable.Items.Refresh();
                 info_text.Text = "Your films from " + parametr_to_find.Text + " with the bigest budget and lowest time:";
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Erorr", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -75,13 +77,15 @@ namespace FilmApp.MVVM.ViewModel
             {
                 if (parametr_to_find.Text == string.Empty || parametr_to_find.Text.Any(c => char.IsDigit(c)))
                     throw new Exception("Your parameter is not valid.");
+                if (list.FindAllFilmsWithActor(parametr_to_find.Text).Count == 0)
+                    throw new Exception("There is not films with input actor!");
                 FilmTable.ItemsSource = list.FindAllFilmsWithActor(parametr_to_find.Text);
                 FilmTable.Items.Refresh();
                 info_text.Text = "Your films with " + parametr_to_find.Text ;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Erorr", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -95,7 +99,7 @@ namespace FilmApp.MVVM.ViewModel
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Erorr", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -109,7 +113,7 @@ namespace FilmApp.MVVM.ViewModel
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Erorr", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -148,7 +152,7 @@ namespace FilmApp.MVVM.ViewModel
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Erorr", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }

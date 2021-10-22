@@ -28,11 +28,11 @@ namespace FilmApp
             try
             {
                 list.SortByCountry();
-                filmsData.UpDateFilms(list,ToChange.Yes, "Your films sorted by country");
+                filmsData.UpDateFilms(list,ToChange.Yes, "Your films sorted by country:");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }
@@ -47,7 +47,7 @@ namespace FilmApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Erorr", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             
         }
@@ -56,7 +56,7 @@ namespace FilmApp
         {
             try
             {
-                if(list==null || list.List.Count == 0)
+                if(list!=null && list.List.Count > 0)
                 {
                     MessageBoxResult result = MessageBox.Show("Do you want to read new data? Your old data will be clear.", "Question",
                         MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -75,20 +75,27 @@ namespace FilmApp
                 {
                      filePath = fileDialog.FileNames[0];
                 }
-
+                if (!filePath.Contains(".json"))
+                {
+                    throw new Exception("We don't work with this type of files!");
+                }
                 FilmData.counter = 0;
                 //$"{Directory.GetCurrentDirectory()}/films.json")
                 using (StreamReader read = new StreamReader(filePath))
                 {
                     string json = read.ReadToEnd();
+                    if (json == string.Empty)
+                        throw new Exception("Your file is empty! Try to open another file.");
                     list = JsonConvert.DeserializeObject<FilmList>(json);
                 }
+                if (list.List.Count == 0)
+                    throw new Exception("We can't convert your file data to film. Fix your data to json format and try again.");
                 filmsData.UpDateFilms(list, ToChange.Yes,"Your films:");
                 MessageBox.Show("You successfully readed films from file", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Erorr", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -100,7 +107,7 @@ namespace FilmApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Erorr", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -108,11 +115,13 @@ namespace FilmApp
         {
             try
             {
+                if (list.List.Count == 0)
+                    throw new Exception("Your list is empty!");
                 filmsData.UpDateFilms(list, ToChange.No, "Your films:");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Erorr", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void BFindOldestExpesive_Click(object sender, RoutedEventArgs e)
@@ -123,7 +132,7 @@ namespace FilmApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Erorr", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
