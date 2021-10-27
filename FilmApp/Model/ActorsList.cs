@@ -9,7 +9,7 @@ namespace FilmApp.Model
     public class ActorsList
     {
         List<string> actors = null;
-        public List<string> Actors { get { return actors; } set { actors = value; } }
+        public List<string> Actors { get { return actors; }  set { actors = value; } }
         
         public ActorsList() { actors = new List<string>(); }
         public ActorsList(string name)

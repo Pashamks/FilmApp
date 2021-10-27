@@ -21,6 +21,7 @@ namespace FilmApp
             InitializeComponent();
             list = new FilmList();
             filmsData = new FilmsData();
+
         }
 
         private void BSort_Click(object sender, RoutedEventArgs e)
@@ -41,8 +42,24 @@ namespace FilmApp
         {
             try
             {
+                if (list.List.Count == 0)
+                    throw new Exception("Your list is empty!");
                 string films = System.Text.Json.JsonSerializer.Serialize(list);
-                File.WriteAllText($"{Directory.GetCurrentDirectory()}/films.json", films);
+                OpenFileDialog fileDialog = new OpenFileDialog();
+                fileDialog.Multiselect = false;
+                fileDialog.Filter = "Text files|*.json*.*";
+                fileDialog.DefaultExt = ".txt";
+                Nullable<bool> dialogOk = fileDialog.ShowDialog();
+                string filePath = string.Empty;
+                if (dialogOk == true)
+                {
+                    filePath = fileDialog.FileNames[0];
+                }
+                if (!filePath.Contains(".json"))
+                {
+                    throw new Exception("We don't work with this type of files!");
+                }
+                File.WriteAllText(filePath, films);
                 MessageBox.Show("Your data saved to file.", "Successe", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
             catch (Exception ex)
@@ -103,6 +120,8 @@ namespace FilmApp
         {
             try
             {
+                if (list.List.Count == 0)
+                    throw new Exception("Your list is empty!");
                 MessageBox.Show(list.FindPopularActor(), "The most popular actor:",MessageBoxButton.OK ,MessageBoxImage.Information);
             }
             catch (Exception ex)

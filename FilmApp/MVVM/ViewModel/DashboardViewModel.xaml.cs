@@ -146,6 +146,7 @@ namespace FilmApp.MVVM.ViewModel
                     list.List.Add(film);
                     FilmTable.ItemsSource = list.List;
                     FilmTable.Items.Refresh();
+                    amount_fo_films.Text = "Amount of films in app: " + FilmData.counter.ToString();
                 }
                 info_text.Text = "Your films:";
                 MessageBox.Show("You successfully added film", "Success", MessageBoxButton.OK, MessageBoxImage.Information);

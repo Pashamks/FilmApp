@@ -19,13 +19,21 @@ namespace FilmApp
         protected double _time;
 
         public string Name { get { return _name; } set { _name = value; } }
-        public string Director { get { return _director; } set { _director = value; } }
+        public string Director { get { return _director; } 
+            set {
+                if (value.Any(c => char.IsDigit(c)))
+                    throw new Exception("Your director is not valid - " + value);
+                _director = value; } }
         public int Year { get { return _year; } set { _year = value; } }
 
         public ActorsList Actors { get { return _actors; } set { _actors = value; } }
 
         public double Price { get { return _price; } set { _price = value; } }
-        public string Country { get { return _country; } set { _country = value; } }
+        public string Country { get { return _country; } 
+            set {
+                if (value.Any(c => char.IsDigit(c)))
+                    throw new Exception("Your country is not valid - " + value);
+                _country = value; } }
         public double Time { get { return _time; } set { _time = value; } }
 
         static FilmData() { counter = 0; }
@@ -42,7 +50,7 @@ namespace FilmApp
             _time = time;
             counter++;
         }
-        public FilmData(FilmData val)
+        public FilmData(FilmData val)   
         {
             _name = val._name;
             _director = val._director;

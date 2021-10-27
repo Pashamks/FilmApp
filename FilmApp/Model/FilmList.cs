@@ -18,7 +18,10 @@ namespace FilmApp.Model
         {
             this.list = list;
         }
-        
+        public FilmList(FilmList filmList)
+        {
+            list = filmList.list;
+        }
         public List<FilmData> List {  get { return list; } set { list = value; } }
 
         public void  SortByCountry()
@@ -156,7 +159,7 @@ namespace FilmApp.Model
             //шукаємо найдорожчі фільми
             List<FilmData> max_price = list.Where(val => val.Price == list.Max(film => film.Price)).ToList<FilmData>();
             //шукаємо найстарші фільми
-            films = max_price.Where(val => val.Time == max_price.Min(film => film.Time)).ToList<FilmData>();
+            films = max_price.Where(val => val.Year == max_price.Min(film => film.Year)).ToList<FilmData>();
 
             return new FilmList(films);
         }
